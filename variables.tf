@@ -250,3 +250,8 @@ variable "azurerm_storage_account_name" {
   description = "The Azure Storage Account Name for External Exhibitor"
   default     = ""
 }
+
+variable "custom_data" {
+  description = "User data to be used on these instances (cloud-init)"
+  default     = ""
+}

@@ -119,6 +119,7 @@ module "bootstrap" {
   resource_group_name       = "${azurerm_resource_group.rg.name}"
   subnet_id                 = "${module.network.subnet_id}"
   network_security_group_id = "${module.network-security-group.bootstrap.nsg_id}"
+  custom_data               = "${var.custom_data}"
 
   # Determine if we need to force a particular location
   dcos_version = "${var.dcos_version}"
@@ -148,6 +149,7 @@ module "masters" {
   network_security_group_id    = "${module.network-security-group.masters.nsg_id}"
   public_backend_address_pool  = ["${module.loadbalancers.masters.backend_address_pool}"]
   private_backend_address_pool = ["${module.loadbalancers.masters-internal.backend_address_pool}"]
+  custom_data                  = "${var.custom_data}"
 
   # Determine if we need to force a particular location
   dcos_version = "${var.dcos_version}"
@@ -175,6 +177,7 @@ module "private_agents" {
   resource_group_name       = "${azurerm_resource_group.rg.name}"
   subnet_id                 = "${module.network.subnet_id}"
   network_security_group_id = "${module.network-security-group.private_agents.nsg_id}"
+  custom_data               = "${var.custom_data}"
 
   # Determine if we need to force a particular location
   dcos_version = "${var.dcos_version}"
@@ -203,6 +206,7 @@ module "public_agents" {
   subnet_id                   = "${module.network.subnet_id}"
   network_security_group_id   = "${module.network-security-group.public_agents.nsg_id}"
   public_backend_address_pool = ["${module.loadbalancers.public-agents.backend_address_pool}"]
+  custom_data                 = "${var.custom_data}"
 
   # Determine if we need to force a particular location
   dcos_version = "${var.dcos_version}"
